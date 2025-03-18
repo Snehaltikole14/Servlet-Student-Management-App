@@ -18,7 +18,7 @@ public class EditStudentServlets extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         res.setContentType("text/html");
 
-        // ✅ Debugging: Print all received parameters
+
         System.out.println("---- Received Parameters ----");
         req.getParameterMap().forEach((key, value) ->
                 System.out.println(key + " = " + (value.length > 0 ? value[0] : "NULL"))
@@ -29,7 +29,7 @@ public class EditStudentServlets extends HttpServlet {
         String idString = req.getParameter("id"); // Student ID
         String dobString = req.getParameter("dob");
 
-        // ✅ Validate student ID
+
         if (idString == null || idString.trim().isEmpty()) {
             res.getWriter().println("Error: Student ID is required.");
             return;
@@ -43,7 +43,7 @@ public class EditStudentServlets extends HttpServlet {
             return;
         }
 
-        // ✅ Validate Date of Birth
+
         if (dobString == null || dobString.trim().isEmpty()) {
             System.out.println("Error: DOB is missing from request!");
             res.getWriter().println("Error: Date of Birth is required.");
@@ -58,7 +58,7 @@ public class EditStudentServlets extends HttpServlet {
             return;
         }
 
-        // ✅ Create updated Student object
+
         Student student = Student.builder()
                 .id(id)
                 .name(studentName)
@@ -66,7 +66,7 @@ public class EditStudentServlets extends HttpServlet {
                 .dob(dob)
                 .build();
 
-        // ✅ Update Student
+
         StudentController controller = new StudentController();
       controller.editStudent(student);
 

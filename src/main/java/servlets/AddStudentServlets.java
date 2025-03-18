@@ -18,7 +18,7 @@ public class AddStudentServlets extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         res.setContentType("text/html");
 
-        // ✅ Debug: Print all received parameters
+
         System.out.println("---- Received Parameters ----");
         req.getParameterMap().forEach((key, value) ->
                 System.out.println(key + " = " + (value.length > 0 ? value[0] : "NULL"))
@@ -28,15 +28,15 @@ public class AddStudentServlets extends HttpServlet {
         String gender = req.getParameter("gender");
         String dobString = req.getParameter("dob");
 
-        System.out.println("Received dob: " + dobString); // Debugging output
+        System.out.println("Received dob: " + dobString);
 
-        // 🚨 Check if Date of Birth is missing
+
         if (dobString == null || dobString.trim().isEmpty()) {
             res.getWriter().println("Error: Date of Birth is required.");
             return;
         }
 
-        // ✅ Convert String to LocalDate safely
+
         LocalDate dob;
         try {
             dob = LocalDate.parse(dobString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -45,14 +45,14 @@ public class AddStudentServlets extends HttpServlet {
             return;
         }
 
-        // ✅ Create Student Object
+
         Student student = Student.builder()
                 .name(studentName)
                 .gender(gender)
                 .dob(dob)
                 .build();
 
-        // ✅ Save Student
+
         StudentController controller = new StudentController();
         controller.addStudent(student);
 
