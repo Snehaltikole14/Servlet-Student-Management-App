@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Student</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h2 class="header">Add Student</h2>
+<form action="addStudent" method="post"> <!-- ✅ Ensure method is POST -->
+    <table>
+        <tr>
+            <td>Student Name</td>
+            <td><input type="text" name="name" required></td>
+        </tr>
+        <tr>
+            <td>Student DOB</td>
+            <td><input type="date" name="dob" required></td> <!-- ✅ Ensure name="dob" -->
+        </tr>
+        <tr>
+            <td>Student Gender </td>
+            <td><input type="text" name="gender" required></td>
+        </tr>
+        <tr>
+            <td><button type="submit">Add Student</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
