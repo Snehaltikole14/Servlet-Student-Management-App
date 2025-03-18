@@ -8,7 +8,7 @@
     <a href="addStudent.html">Add Student</a>
     <a href="editStudent.html">Edit Student</a>
     <a href="deleteStudent.html">Delete Student</a>
-    <a href="displayStudent.html">Display Student</a>
+    <a href="getAllStudent.html">Display Student</a>
 
 </div>
 

@@ -3,9 +3,9 @@ package dao;
 import model.Student;
 import util.DatabaseUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StudentDao {
     public void addStudent(Student student) {
@@ -51,7 +51,26 @@ public class StudentDao {
         }
         System.out.println("Student updated successfully");
     }
-
+    public List<Student> getAllStudent() {
+        List<Student> students = new ArrayList<>();
+        String sql = "SELECT * FROM students";
+        try (Connection connection = DatabaseUtil.getConnection();
+             Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                Student student = new Student(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("gender"),
+                        rs.getDate("dob").toLocalDate()
+                );
+                students.add(student);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return students;
+    }
 
 
 }

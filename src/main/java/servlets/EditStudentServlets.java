@@ -26,23 +26,9 @@ public class EditStudentServlets extends HttpServlet {
 
         String studentName = req.getParameter("name");
         String gender = req.getParameter("gender");
-        String idString = req.getParameter("id"); // Student ID
+        int id = Integer.parseInt(req.getParameter("id"));
+
         String dobString = req.getParameter("dob");
-
-
-        if (idString == null || idString.trim().isEmpty()) {
-            res.getWriter().println("Error: Student ID is required.");
-            return;
-        }
-
-        int id;
-        try {
-            id = Integer.parseInt(idString);
-        } catch (NumberFormatException e) {
-            res.getWriter().println("Error: Invalid Student ID.");
-            return;
-        }
-
 
         if (dobString == null || dobString.trim().isEmpty()) {
             System.out.println("Error: DOB is missing from request!");
@@ -58,18 +44,13 @@ public class EditStudentServlets extends HttpServlet {
             return;
         }
 
-
         Student student = Student.builder()
                 .id(id)
                 .name(studentName)
                 .gender(gender)
                 .dob(dob)
                 .build();
-
-
         StudentController controller = new StudentController();
       controller.editStudent(student);
-
-       
     }
 }
