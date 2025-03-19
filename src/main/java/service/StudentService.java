@@ -23,6 +23,10 @@ public class StudentService {
     public List<Student> getAllStudent() {
         return studentDao.getAllStudent();
     }
+
+    public List<String> searchStudent(String key) {
+        return studentDao.searchStudent(key);
+    }
 }
 
 

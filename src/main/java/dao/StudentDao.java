@@ -72,5 +72,24 @@ public class StudentDao {
         return students;
     }
 
+    public List<String> searchStudent(String key) {
+        List<String> studentList = new ArrayList<>();
+        String sql = "SELECT name FROM students WHERE name LIKE ?";
+
+        try (Connection conn = DatabaseUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, "%" + key + "%"); // Partial search
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                studentList.add(rs.getString("name"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return studentList;
+    }
 
 }

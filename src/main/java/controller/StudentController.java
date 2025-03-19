@@ -19,4 +19,7 @@ public class StudentController {
     public List<Student> getAllStudent() {
         return studentService.getAllStudent();
     }
+    public List<String>searchStudent(String key) {
+        return studentService.searchStudent(key);
+    }
 }
